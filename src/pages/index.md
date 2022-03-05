@@ -1,5 +1,5 @@
 ---
-heading: Great coffee with a conscience
+heading: Hi, I'm Saad Elbeleidy!
 subheading: Support sustainable farming while enjoying a cup
 templateKey: index-page
 mainpitch:
@@ -61,7 +61,7 @@ main:
   image3:
     alt: Coffee beans
     image: /img/products-grid1.jpg
-image: /img/home-jumbotron.jpg
+image: /img/saad.jpg
 description: Kaldi is the ultimate spot for coffee lovers who want to learn
   about their java’s origin and support the farmers that grew it. We take coffee
   production, roasting and brewing seriously and we’re glad to pass that
