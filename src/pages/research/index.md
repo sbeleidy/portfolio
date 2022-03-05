@@ -1,7 +1,7 @@
 ---
-templateKey: 'product-page'
-path: /products
-title: Our Coffee
+templateKey: 'research-page'
+path: /research
+title: Saad Elbeleidy - Research
 image: /img/jumbotron.jpg
 heading: Great coffee with a conscience
 description: >-
