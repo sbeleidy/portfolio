@@ -2,34 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
-import Features from "../components/Features";
+import Content, { HTMLContent } from "../components/Content";
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 
 // eslint-disable-next-line
-export const ResearchPageTemplate = ({
-  image,
-  title,
-  heading,
-  description,
-  intro,
-  main,
-}) => {
+export const ResearchPageTemplate = ({ title, main, conclusion }) => {
   return (
     <div className="content">
       <section className="section section--gradient">
         <div className="container">
           <div className="section">
             <div className="columns">
-              <div className="column is-7 is-offset-1">
-                <h3 className="has-text-weight-semibold is-size-2">
-                  {heading}
-                </h3>
-                <p>{description}</p>
-              </div>
-            </div>
-            <div className="columns">
               <div className="column is-10 is-offset-1">
-                <Features gridItems={intro.blurbs} />
                 <div className="columns">
                   <div className="column is-7">
                     <h3 className="has-text-weight-semibold is-size-3">
@@ -38,27 +22,12 @@ export const ResearchPageTemplate = ({
                     <p>{main.description}</p>
                   </div>
                 </div>
-                <div className="tile is-ancestor">
-                  <div className="tile is-vertical">
-                    <div className="tile">
-                      <div className="tile is-parent is-vertical">
-                        <article className="tile is-child">
-                          <PreviewCompatibleImage imageInfo={main.image1} />
-                        </article>
-                      </div>
-                      <div className="tile is-parent">
-                        <article className="tile is-child">
-                          <PreviewCompatibleImage imageInfo={main.image2} />
-                        </article>
-                      </div>
-                    </div>
-                    <div className="tile is-parent">
-                      <article className="tile is-child">
-                        <PreviewCompatibleImage imageInfo={main.image3} />
-                      </article>
-                    </div>
+                {main.blurbs.map((blurb) => (
+                  <div>
+                    <h3>{blurb.heading}</h3>
+                    <p>{blurb.description}</p>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -69,26 +38,13 @@ export const ResearchPageTemplate = ({
 };
 
 ResearchPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
-  heading: PropTypes.string,
-  description: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
   main: PropTypes.shape({
     heading: PropTypes.string,
     description: PropTypes.string,
-    image1: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    image2: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    image3: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    blurbs: PropTypes.array,
   }),
-  testimonials: PropTypes.array,
-  pricing: PropTypes.shape({
-    heading: PropTypes.string,
-    description: PropTypes.string,
-    plans: PropTypes.array,
-  }),
+  conclusion: PropTypes.string,
 };
 
 const ResearchPage = ({ data }) => {
@@ -97,12 +53,9 @@ const ResearchPage = ({ data }) => {
   return (
     <Layout>
       <ResearchPageTemplate
-        image={frontmatter.image}
         title={frontmatter.title}
-        heading={frontmatter.heading}
-        description={frontmatter.description}
-        intro={frontmatter.intro}
         main={frontmatter.main}
+        conclusion={frontmatter.conclusion}
       />
     </Layout>
   );
@@ -123,53 +76,15 @@ export const researchPageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       frontmatter {
         title
-        image {
-          childImageSharp {
-            gatsbyImageData(quality: 100, layout: FULL_WIDTH)
-          }
-        }
-        heading
-        description
-        intro {
-          blurbs {
-            image {
-              childImageSharp {
-                gatsbyImageData(width: 240, quality: 64, layout: CONSTRAINED)
-              }
-            }
-            text
-          }
-          heading
-          description
-        }
         main {
           heading
           description
-          image1 {
-            alt
-            image {
-              childImageSharp {
-                gatsbyImageData(width: 526, quality: 92, layout: CONSTRAINED)
-              }
-            }
-          }
-          image2 {
-            alt
-            image {
-              childImageSharp {
-                gatsbyImageData(width: 526, quality: 92, layout: CONSTRAINED)
-              }
-            }
-          }
-          image3 {
-            alt
-            image {
-              childImageSharp {
-                gatsbyImageData(quality: 72, layout: FULL_WIDTH)
-              }
-            }
+          blurbs {
+            heading
+            description
           }
         }
+        conclusion
       }
     }
   }
