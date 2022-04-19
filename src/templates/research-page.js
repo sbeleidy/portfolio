@@ -14,20 +14,19 @@ export const ResearchPageTemplate = ({ title, main, conclusion }) => {
           <div className="section">
             <div className="columns">
               <div className="column is-10 is-offset-1">
-                <div className="columns">
-                  <div className="column is-7">
-                    <h3 className="has-text-weight-semibold is-size-3">
-                      {main.heading}
-                    </h3>
-                    <p>{main.description}</p>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="has-text-weight-semibold is-size-3">
+                    {main.heading}
+                  </h3>
+                  <p>{main.description}</p>
                 </div>
                 {main.blurbs.map((blurb) => (
-                  <div>
+                  <div className="p-8 mb-2">
                     <h3>{blurb.heading}</h3>
                     <p>{blurb.description}</p>
                   </div>
                 ))}
+                <div className="mb-2">{conclusion}</div>
               </div>
             </div>
           </div>
