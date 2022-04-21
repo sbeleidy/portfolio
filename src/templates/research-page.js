@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
+import { Helmet } from "react-helmet";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
@@ -12,11 +13,13 @@ export const ResearchPageTemplate = ({
   content,
   conclusion,
   contentComponent,
+  helmet,
 }) => {
   const PageContent = contentComponent || Content;
   return (
     <div className="content">
       <section className="section section--gradient">
+        {helmet || ""}
         <div className="container">
           <div className="section">
             <div className="columns">
@@ -61,6 +64,11 @@ const ResearchPage = ({ data }) => {
         content={post.html}
         conclusion={post.frontmatter.conclusion}
         contentComponent={HTMLContent}
+        helmet={
+          <Helmet titleTemplate="%s">
+            <title>{`${post.frontmatter.title}`}</title>
+          </Helmet>
+        }
       />
     </Layout>
   );
