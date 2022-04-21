@@ -6,7 +6,14 @@ import Content, { HTMLContent } from "../components/Content";
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 
 // eslint-disable-next-line
-export const ResearchPageTemplate = ({ title, main, content, conclusion }) => {
+export const ResearchPageTemplate = ({
+  title,
+  main,
+  content,
+  conclusion,
+  contentComponent,
+}) => {
+  const PageContent = contentComponent || Content;
   return (
     <div className="content">
       <section className="section section--gradient">
@@ -21,7 +28,7 @@ export const ResearchPageTemplate = ({ title, main, content, conclusion }) => {
                   <p>{main.description}</p>
                 </div>
                 <div className="p-8 mb-2">
-                  <HTMLContent content={content} />
+                  <PageContent content={content} />
                 </div>
                 <div className="mb-2">{conclusion}</div>
               </div>
@@ -39,6 +46,7 @@ ResearchPageTemplate.propTypes = {
     heading: PropTypes.string,
     description: PropTypes.string,
   }),
+  content: PropTypes.string,
   conclusion: PropTypes.string,
 };
 

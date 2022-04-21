@@ -81,7 +81,7 @@ collections:
                 [
                   { label: Heading, name: heading, widget: string },
                   { label: Description, name: description, widget: text },
-                  { label: "Body", name: "body", widget: "markdown" },
                 ],
             }
+          - { label: "Body", name: "body", widget: "markdown" }
           - { label: Conclusion, name: conclusion, widget: text }

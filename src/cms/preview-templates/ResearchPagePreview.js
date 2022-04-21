@@ -9,8 +9,8 @@ const ResearchPagePreview = ({ entry, widgetFor }) => {
       main={{
         heading: entry.getIn(["data", "main", "heading"]),
         description: entry.getIn(["data", "main", "description"]),
-        body: widgetFor("body"),
       }}
+      content={widgetFor("body")}
       conclusion={entry.getIn(["data", "conclusion"])}
     />
   );
@@ -20,7 +20,7 @@ ResearchPagePreview.propTypes = {
   entry: PropTypes.shape({
     getIn: PropTypes.func,
   }),
-  getAsset: PropTypes.func,
+  widgetFor: PropTypes.func,
 };
 
 export default ResearchPagePreview;
