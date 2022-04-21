@@ -60,6 +60,7 @@ const ResearchPage = ({ data }) => {
         main={post.frontmatter.main}
         content={post.html}
         conclusion={post.frontmatter.conclusion}
+        contentComponent={HTMLContent}
       />
     </Layout>
   );
