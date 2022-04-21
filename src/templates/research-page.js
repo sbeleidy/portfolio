@@ -6,7 +6,7 @@ import Content, { HTMLContent } from "../components/Content";
 import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
 
 // eslint-disable-next-line
-export const ResearchPageTemplate = ({ title, main, conclusion }) => {
+export const ResearchPageTemplate = ({ title, main, content, conclusion }) => {
   return (
     <div className="content">
       <section className="section section--gradient">
@@ -20,12 +20,9 @@ export const ResearchPageTemplate = ({ title, main, conclusion }) => {
                   </h3>
                   <p>{main.description}</p>
                 </div>
-                {main.blurbs.map((blurb) => (
-                  <div className="p-8 mb-2">
-                    <h3>{blurb.heading}</h3>
-                    <p>{blurb.description}</p>
-                  </div>
-                ))}
+                <div className="p-8 mb-2">
+                  <HTMLContent content={content} />
+                </div>
                 <div className="mb-2">{conclusion}</div>
               </div>
             </div>
@@ -41,20 +38,20 @@ ResearchPageTemplate.propTypes = {
   main: PropTypes.shape({
     heading: PropTypes.string,
     description: PropTypes.string,
-    blurbs: PropTypes.array,
   }),
   conclusion: PropTypes.string,
 };
 
 const ResearchPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
+  const { markdownRemark: post } = data;
 
   return (
     <Layout>
       <ResearchPageTemplate
-        title={frontmatter.title}
-        main={frontmatter.main}
-        conclusion={frontmatter.conclusion}
+        title={post.frontmatter.title}
+        main={post.frontmatter.main}
+        content={post.html}
+        conclusion={post.frontmatter.conclusion}
       />
     </Layout>
   );
@@ -73,15 +70,12 @@ export default ResearchPage;
 export const researchPageQuery = graphql`
   query ResearchPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
+      html
       frontmatter {
         title
         main {
           heading
           description
-          blurbs {
-            heading
-            description
-          }
         }
         conclusion
       }

@@ -2,19 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ResearchPageTemplate } from "../../templates/research-page";
 
-const ResearchPagePreview = ({ entry, getAsset }) => {
-  const entryBlurbs = entry.getIn(["data", "main", "blurbs"]);
-  const blurbs = entryBlurbs ? entryBlurbs.toJS() : [];
-
+const ResearchPagePreview = ({ entry, widgetFor }) => {
   return (
     <ResearchPageTemplate
       title={entry.getIn(["data", "title"])}
-      heading={entry.getIn(["data", "heading"])}
-      description={entry.getIn(["data", "description"])}
       main={{
         heading: entry.getIn(["data", "main", "heading"]),
         description: entry.getIn(["data", "main", "description"]),
-        blurbs: blurbs,
+        body: widgetFor("body"),
       }}
       conclusion={entry.getIn(["data", "conclusion"])}
     />
