@@ -36,14 +36,6 @@ export const IndexPageTemplate = ({
           <div className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto prose prose-indigo">
             <PageContent className="content" content={content} />
           </div>
-          <div className="mt-10 max-w-2xl lg:mx-auto text-center">
-             <a
-                href="#"
-                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 shadow-md transition duration-150 ease-in-out"
-              >
-                Book a Call
-              </a>
-          </div>
         </div>
       </div>
     </section>

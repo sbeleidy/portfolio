@@ -22,18 +22,23 @@ class TagRoute extends React.Component {
 
     return (
       <Layout>
-        <section className="section">
+        <section className="py-12 bg-white">
           <Helmet title={`${tag} | ${title}`} />
-          <div className="container content">
-            <div className="columns">
-              <div
-                className="column is-10 is-offset-1"
-                style={{ marginBottom: "6rem" }}
-              >
-                <h3 className="title is-size-4 is-bold-light">{tagHeader}</h3>
-                <ul className="taglist">{postLinks}</ul>
-                <p>
-                  <Link to="/tags/">Browse all tags</Link>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="lg:text-center flex flex-col items-center">
+              <div className="flex flex-col items-center mb-8">
+                <h3 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl text-center mb-8">{tagHeader}</h3>
+                <ul className="space-y-4">
+                  {posts.map((post) => (
+                    <li key={post.node.fields.slug} className="text-left">
+                      <Link to={post.node.fields.slug} className="text-xl font-semibold text-indigo-600 hover:text-indigo-800">
+                        {post.node.frontmatter.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-8">
+                  <Link to="/tags/" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">Browse all tags</Link>
                 </p>
               </div>
             </div>

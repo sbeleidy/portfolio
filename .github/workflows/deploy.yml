@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Use a maintained Node version
+          node-version: '18' # Gatsby v4 is most stable with Node 18
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps

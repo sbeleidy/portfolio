@@ -1,32 +1,18 @@
 import React from "react";
+import { Link } from "gatsby";
 
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       active: false,
-      navBarActiveClass: "",
     };
   }
 
   toggleHamburger() {
-    // toggle the active boolean in the state
-    this.setState(
-      {
-        active: !this.state.active,
-      },
-      // after state has been updated,
-      () => {
-        // set the class in state for the navbar accordingly
-        this.state.active
-          ? this.setState({
-              navBarActiveClass: "is-active",
-            })
-          : this.setState({
-              navBarActiveClass: "",
-            });
-      }
-    );
+    this.setState({
+      active: !this.state.active,
+    });
   }
 
   render() {
@@ -36,30 +22,30 @@ const Navbar = class extends React.Component {
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
-                <a href="/" className="text-xl font-bold text-gray-800">
+                <Link to="/" className="text-xl font-bold text-gray-800">
                   Saad Elbeleidy
-                </a>
+                </Link>
               </div>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8 sm:items-center">
-              <a
-                href="/about"
+              <Link
+                to="/about"
                 className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium"
               >
                 About
-              </a>
-              <a
-                href="/research"
+              </Link>
+              <Link
+                to="/research"
                 className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium"
               >
                 Research
-              </a>
-              <a
-                href="/blog"
+              </Link>
+              <Link
+                to="/blog"
                 className="text-gray-900 hover:text-gray-500 px-3 py-2 rounded-md text-sm font-medium"
               >
                 Blog
-              </a>
+              </Link>
             </div>
             <div className="-mr-2 flex items-center sm:hidden">
               <button
@@ -110,24 +96,24 @@ const Navbar = class extends React.Component {
           id="mobile-menu"
         >
           <div className="pt-2 pb-3 space-y-1">
-            <a
-              href="/about"
+            <Link
+              to="/about"
               className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
             >
               About
-            </a>
-            <a
-              href="/research"
+            </Link>
+            <Link
+              to="/research"
               className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
             >
               Research
-            </a>
-            <a
-              href="/blog"
+            </Link>
+            <Link
+              to="/blog"
               className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
             >
               Blog
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
