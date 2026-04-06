@@ -17,29 +17,27 @@ export const ResearchPageTemplate = ({
 }) => {
   const PageContent = contentComponent || Content;
   return (
-    <div className="content">
-      <section className="section section--gradient">
-        {helmet || ""}
-        <div className="container">
-          <div className="section">
-            <div className="columns">
-              <div className="column is-10 is-offset-1">
-                <div className="mb-4">
-                  <h3 className="has-text-weight-semibold is-size-3">
-                    {main.heading}
-                  </h3>
-                  <p>{main.description}</p>
-                </div>
-                <div className="p-8 mb-2">
-                  <PageContent content={content} />
-                </div>
-                <div className="mb-2">{conclusion}</div>
-              </div>
-            </div>
+    <section className="py-12 bg-white">
+      {helmet || ""}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center flex flex-col items-center">
+          <div className="flex flex-col items-center mb-8">
+            <h3 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl text-center">
+              {main.heading}
+            </h3>
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              {main.description}
+            </p>
+          </div>
+          <div className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto prose prose-indigo text-left">
+            <PageContent content={content} />
+          </div>
+          <div className="mt-8 max-w-2xl text-lg text-gray-700 italic border-l-4 border-indigo-500 pl-4 py-2 text-left">
+            {conclusion}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

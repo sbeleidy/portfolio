@@ -18,29 +18,38 @@ export const BlogPostTemplate = ({
   const PostContent = contentComponent || Content;
 
   return (
-    <section className="section">
+    <section className="py-12 bg-white">
       {helmet || ""}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center flex flex-col items-center">
+          <div className="flex flex-col items-center mb-8">
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl text-center">
               {title}
             </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map((tag) => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+            <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+              {description}
+            </p>
           </div>
+          <div className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto prose prose-indigo text-left">
+            <PostContent content={content} />
+          </div>
+          {tags && tags.length ? (
+            <div className="mt-12 max-w-2xl w-full mx-auto text-left">
+              <h4 className="text-lg font-bold text-gray-900 mb-4">Tags</h4>
+              <ul className="flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <li key={tag + `tag`}>
+                    <Link
+                      to={`/tags/${kebabCase(tag)}/`}
+                      className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200"
+                    >
+                      {tag}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

@@ -13,19 +13,19 @@ const TagsPage = ({
   },
 }) => (
   <Layout>
-    <section className="section">
+    <section className="py-12 bg-white">
       <Helmet title={`Tags | ${title}`} />
-      <div className="container content">
-        <div className="columns">
-          <div
-            className="column is-10 is-offset-1"
-            style={{ marginBottom: "6rem" }}
-          >
-            <h1 className="title is-size-2 is-bold-light">Tags</h1>
-            <ul className="taglist">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center flex flex-col items-center">
+          <div className="flex flex-col items-center mb-8">
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl text-center mb-8">Tags</h1>
+            <ul className="flex flex-wrap justify-center gap-4">
               {group.map((tag) => (
                 <li key={tag.fieldValue}>
-                  <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+                  <Link
+                    to={`/tags/${kebabCase(tag.fieldValue)}/`}
+                    className="inline-flex items-center px-4 py-2 rounded-full text-md font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 shadow-sm"
+                  >
                     {tag.fieldValue} ({tag.totalCount})
                   </Link>
                 </li>

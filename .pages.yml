@@ -1,0 +1,110 @@
+media:
+  input: static/img
+  output: /img
+
+content:
+  - name: blog
+    label: Blog
+    type: collection
+    path: src/pages/blog
+    format: frontmatter
+    fields:
+      - name: templateKey
+        label: Template Key
+        type: string
+        default: blog-post
+        hidden: true
+      - name: title
+        label: Title
+        type: string
+      - name: date
+        label: Publish Date
+        type: datetime
+      - name: description
+        label: Description
+        type: text
+      - name: featuredpost
+        label: Featured Post
+        type: boolean
+      - name: featuredimage
+        label: Featured Image
+        type: image
+      - name: body
+        label: Body
+        type: rich-text
+      - name: tags
+        label: Tags
+        type: list
+
+  - name: index
+    label: Landing Page
+    type: file
+    path: src/pages/index.md
+    format: frontmatter
+    fields:
+      - name: templateKey
+        label: Template Key
+        type: string
+        default: index-page
+        hidden: true
+      - name: title
+        label: Title
+        type: string
+      - name: heading
+        label: Heading
+        type: string
+      - name: image
+        label: Image
+        type: image
+      - name: body
+        label: Body
+        type: rich-text
+
+  - name: about
+    label: About
+    type: file
+    path: src/pages/about/index.md
+    format: frontmatter
+    fields:
+      - name: templateKey
+        label: Template Key
+        type: string
+        default: about-page
+        hidden: true
+      - name: title
+        label: Title
+        type: string
+      - name: body
+        label: Body
+        type: rich-text
+
+  - name: research
+    label: Research Page
+    type: file
+    path: src/pages/research/index.md
+    format: frontmatter
+    fields:
+      - name: templateKey
+        label: Template Key
+        type: string
+        default: research-page
+        hidden: true
+      - name: title
+        label: Title
+        type: string
+      - name: main
+        label: Main
+        type: object
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+          - name: description
+            label: Description
+            type: text
+      - name: body
+        label: Body
+        type: rich-text
+      - name: conclusion
+        label: Conclusion
+        type: text
