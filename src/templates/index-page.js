@@ -18,23 +18,31 @@ export const IndexPageTemplate = ({
   const PageContent = contentComponent || Content;
 
   return (
-    <section className="section section--gradient">
+    <section className="py-12 bg-white">
       {helmet || ""}
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="flex">
-              <PreviewCompatibleImage
-                imageInfo={image}
-                classes="rounded-full w-36"
-              />
-              <div className="flex items-center">
-                <h2 className="text-2xl p-4 m-2 align-middle">{heading}</h2>
-              </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center flex flex-col items-center">
+          <div className="flex flex-col sm:flex-row items-center mb-8">
+            <PreviewCompatibleImage
+              imageInfo={image}
+              classes="rounded-full w-36 h-36 object-cover shadow-lg"
+            />
+            <div className="mt-4 sm:mt-0 sm:ml-6">
+              <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl text-center sm:text-left">
+                {heading}
+              </h2>
             </div>
-            <div className="section">
-              <PageContent className="content" content={content} />
-            </div>
+          </div>
+          <div className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto prose prose-indigo">
+            <PageContent className="content" content={content} />
+          </div>
+          <div className="mt-10 max-w-2xl lg:mx-auto text-center">
+             <a
+                href="#"
+                className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 shadow-md transition duration-150 ease-in-out"
+              >
+                Book a Call
+              </a>
           </div>
         </div>
       </div>

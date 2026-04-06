@@ -9,54 +9,54 @@ class BlogRollTemplate extends React.Component {
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <div className="columns is-multiline">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="is-parent column is-6" key={post.id}>
-              <article
-                className={`blog-list-item tile is-child box notification ${
-                  post.frontmatter.featuredpost ? 'is-featured' : ''
-                }`}
-              >
-                <header>
-                  {post.frontmatter.featuredimage ? (
-                    <div className="featured-thumbnail">
-                      <PreviewCompatibleImage
-                        imageInfo={{
-                          image: post.frontmatter.featuredimage,
-                          alt: `featured image thumbnail for post ${post.frontmatter.title}`,
-                          width:
-                            post.frontmatter.featuredimage.childImageSharp
-                              .gatsbyImageData.width,
-                          height:
-                            post.frontmatter.featuredimage.childImageSharp
-                              .gatsbyImageData.height,
-                        }}
-                      />
-                    </div>
-                  ) : null}
-                  <p className="post-meta">
-                    <Link
-                      className="title has-text-primary is-size-4"
-                      to={post.fields.slug}
-                    >
-                      {post.frontmatter.title}
+            <div className="flex flex-col rounded-lg shadow-lg overflow-hidden bg-white" key={post.id}>
+              {post.frontmatter.featuredimage ? (
+                <div className="flex-shrink-0">
+                  <PreviewCompatibleImage
+                    imageInfo={{
+                      image: post.frontmatter.featuredimage,
+                      alt: `featured image thumbnail for post ${post.frontmatter.title}`,
+                      width:
+                        post.frontmatter.featuredimage.childImageSharp
+                          .gatsbyImageData.width,
+                      height:
+                        post.frontmatter.featuredimage.childImageSharp
+                          .gatsbyImageData.height,
+                    }}
+                  />
+                </div>
+              ) : null}
+              <div className="flex-1 bg-white p-6 flex flex-col justify-between">
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-indigo-600">
+                    <Link to={post.fields.slug} className="hover:underline">
+                      Blog Post
                     </Link>
-                    <span> &bull; </span>
-                    <span className="subtitle is-size-5 is-block">
-                      {post.frontmatter.date}
-                    </span>
                   </p>
-                </header>
-                <p>
-                  {post.excerpt}
-                  <br />
-                  <br />
-                  <Link className="button" to={post.fields.slug}>
+                  <Link to={post.fields.slug} className="block mt-2">
+                    <p className="text-xl font-semibold text-gray-900">{post.frontmatter.title}</p>
+                    <p className="mt-3 text-base text-gray-500">{post.excerpt}</p>
+                  </Link>
+                </div>
+                <div className="mt-6 flex items-center">
+                  <div className="flex-shrink-0">
+                    <span className="sr-only">Date</span>
+                  </div>
+                  <div className="ml-3">
+                    <div className="flex space-x-1 text-sm text-gray-500">
+                      <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4">
+                  <Link className="text-indigo-600 hover:text-indigo-500 font-medium" to={post.fields.slug}>
                     Keep Reading →
                   </Link>
-                </p>
-              </article>
+                </div>
+              </div>
             </div>
           ))}
       </div>
